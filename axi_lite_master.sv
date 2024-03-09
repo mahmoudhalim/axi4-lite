@@ -1,3 +1,5 @@
+`include "axi_lite_pkg"
+
 module axi_lite_master #(
     ADDR_WIDTH = 32,
     DATA_WIDTH  = 32
@@ -16,7 +18,8 @@ module axi_lite_master #(
     input logic [ADDR_WIDTH-1 : 0] raddr
 );
 
-typedef enum logic {IDLE, RADDR, RDATA, WADDR, WDATA, BRESP} state_e;
+import axi_lite_pkg::*;
+
 state_e state, next;
 logic start_read_d, start_write_d;
 
@@ -68,7 +71,6 @@ always_comb begin
         BRESP: if(M_AXI_LITE.BVALID & M_AXI_LITE.BREADY)      next = IDLE;
         default:                                              next = state;
     endcase
-
 end
 
 // state register
