@@ -53,7 +53,7 @@ interface axi_lite_if;
     output AWREADY,
 
     input WDATA, WSTRB, WVALID,
-    output WREAD,
+    output WREADY,
 
     input BREADY,
     output BRESP, BVALID,
